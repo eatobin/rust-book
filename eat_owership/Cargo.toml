@@ -1,0 +1,6 @@
+[package]
+name = "eat_owership"
+version = "0.1.0"
+authors = ["Eric Tobin <eatobin@gmail.com>"]
+
+[dependencies]
