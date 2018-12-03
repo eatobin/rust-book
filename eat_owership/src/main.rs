@@ -1,33 +1,26 @@
 #![allow(unused)]
 fn main() {
-    let mut hello = String::from("Hello, ");
+    let hello = String::new();
+    println!("{}", hello); // prints nothing
 
-    hello.push('w');
-    hello.push_str("orld!");
-
+    let hello = 42;
     println!("{}", hello);
 
-    let bye = hello;
+    let hello = String::from("hello");
+    println!("{}", &hello);
 
-    // println!("{}", hello); // won't work - moved
+    let mut hello_2 = String::from("hello_2");
+    println!("{}", hello_2);
 
-    println!("{}", bye);
+    hello_2.push('2');
+    hello_2.push_str("_skidoo!");
+    println!("{}", hello_2);
 
-    // bye.push_str(" And one more. So bye is mutable too"); bye is not mutable so this wont work!
+    let hello_22 = &mut hello_2;
+    // println!("{}", hello_2); // cannot borrow `hello_2` as immutable
+    // because it is also borrowed as mutable
+    println!("{}", hello_22);
 
-    let mut maybe = bye;
-
-    // println!("{}", bye); // won't work - moved
-
-    maybe.push_str(" And one more. So maybe is mutable even though bye is not");
-
-    println!("{}", maybe);
-
-    let mut maybe_ref = &mut maybe;
-
-    println!("{}", &mut maybe_ref); // maybe still in scope
-
-    maybe_ref.push_str(" Line 2");
-
-    println!("{}", maybe_ref);
+    hello_22.push_str("_last_one");
+    println!("{}", hello_22);
 }
