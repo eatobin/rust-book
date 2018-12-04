@@ -33,6 +33,13 @@ fn var_and_borrowing(mut ms: &mut String) -> () {
     println!("{}", ms.len());
 }
 
+// look... no need to mark the parameter mutable if the param type is mutable
+fn var_and_borrowing_2(ms: &mut String) -> () {
+    ms.push_str("_I'm_mutable_and borrowed...");
+    println!("{}", ms);
+    println!("{}", ms.len());
+}
+
 fn main() {
     let hello = String::from("hello there!");
     val_and_ownership_not_returned(hello);
