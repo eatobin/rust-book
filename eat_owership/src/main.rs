@@ -72,4 +72,15 @@ fn main() {
     // while these are gone (moved):
     // println!("{}", hello);
     // println!("{}", fish);
+
+    let a = [1, 2, 3]; // a[0] = 1, a[1] = 2, a[2] = 3
+    let mut b = [11, 22, 33]; // a[0] = 11, a[1] = 22, a[2] = 33
+
+    b[0] = 99;
+    println!("{:?}", a); //[1, 2, 3]
+    println!("{:?}", b); //[99, 22, 33
+
+    // a[0] = 99; not possible till a made mutable
+
+    println!("{:?}", a); //[1, 2, 3]
 }
