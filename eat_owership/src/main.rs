@@ -83,4 +83,41 @@ fn main() {
     // a[0] = 99; not possible till a made mutable
 
     println!("{:?}", a); //[1, 2, 3]
+
+    let eric: String = String::from("eric");
+    let karen: String = "karen".to_string();
+    let spot: &str = "spot";
+    println!("{}", eric);
+    println!("{}", karen);
+    println!("{}", spot);
+    let spot_twin: &str = &spot;
+    println!("{}", spot_twin);
+
+    let karen_twin: &str = &karen;
+    println!("{}", karen);
+    println!("{}", karen_twin);
+
+    let mut karen_mut: String = "karen the mutt".to_string();
+    println!("{}", karen_mut);
+
+    karen_mut.push_str(&karen);
+    println!("{}", karen_mut);
+    println!("{}", karen_mut + &eric);
+    println!("{}", eric);
+
+    let zero: u8 = 77;
+    let one: u8 = zero;
+    println!("{}", zero);
+
+    let mut a: [u8; 3] = [1, 2, 3];
+    let mut array: [i32; 3] = [0; 3]; // [0, 0, 0]
+                                      // let b = &a;
+    println!("{:?}", a);
+    let mut c = a; // no move - elements are Copy
+    println!("{:?}", a);
+    println!("{:?}", array);
+    println!("{:?}", c);
+    // b[0] = 11;  // won't work unless b is a mutable reference - see c, below
+    c[0] = 11; // a is mutable and so is the reference: c
+    println!("{:?}", c);
 }
