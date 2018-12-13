@@ -54,7 +54,7 @@ fn main() {
         "{:?}",
         Person {
             name: "Doofy",
-            age: 22
+            age: 22,
         }
     );
 
