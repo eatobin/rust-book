@@ -14,6 +14,12 @@ impl<'a> Person<'a> {
     }
 }
 
+#[derive(Debug)]
+struct City {
+    name: String,
+    lat: u8,
+}
+
 // A unit struct
 struct Nil;
 
@@ -41,8 +47,20 @@ fn main() {
     let age: u8 = 27;
     let mut peter: Person = Person { name, age };
 
+    // My attempt
+    let tucson: City = City { name: String::from("Tucson"), lat: 77 };
+
     // Print debug struct
     println!("{:?}", peter);
+    println!("{:?}", tucson);
+
+    let new_city: City = City { name: String::from("Chicago"), ..tucson };
+    println!("{:?}", new_city);
+
+    let mut mut_city: City = City { name: "Newark".to_string(), lat: age };
+    println!("{:?}", mut_city);
+    mut_city = City { lat: 88, ..mut_city };
+    println!("{:?}", mut_city);
 
     // EAT added
     peter.greet();
