@@ -113,11 +113,16 @@ fn main() {
 
     println!("pair contains {:?} and {:?}", integer, decimal);
 
-    let mut v: Vec<City> = Vec::new();
-    v.push(newark);
-    v.push(boston);
-    println!("{:?}", v);
+    let mut ptr_v: Vec<&City> = Vec::new();
+    ptr_v.push(&newark);
+    ptr_v.push(&boston);
+    println!("{:?}", ptr_v);
 
     let target: City = City { name: "Newark".to_string(), lat: 88 };
-    assert!(v.contains(&target));
+    assert!(ptr_v.contains(&&target));
+
+    let mut v: Vec<&City> = Vec::new();
+    v.push(&newark);
+    v.push(&boston);
+    println!("{:?}", v);
 }
