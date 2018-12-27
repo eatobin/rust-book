@@ -14,7 +14,7 @@ impl<'a> Person<'a> {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 struct City {
     name: String,
     lat: u8,
@@ -57,10 +57,11 @@ fn main() {
     let new_city: City = City { name: String::from("Chicago"), ..tucson };
     println!("{:?}", new_city);
 
-    let mut mut_city: City = City { name: "Newark".to_string(), lat: age };
-    println!("{:?}", mut_city);
-    mut_city = City { lat: 88, ..mut_city };
-    println!("{:?}", mut_city);
+    let mut newark: City = City { name: "Newark".to_string(), lat: age };
+    println!("{:?}", newark);
+    newark = City { lat: 88, ..newark };
+    println!("{:?}", newark);
+    let boston: City = City { name: "Boston".to_string(), lat: age };
 
     // EAT added
     peter.greet();
@@ -111,4 +112,12 @@ fn main() {
     let Pair(integer, decimal): Pair = pair;
 
     println!("pair contains {:?} and {:?}", integer, decimal);
+
+    let mut v: Vec<City> = Vec::new();
+    v.push(newark);
+    v.push(boston);
+    println!("{:?}", v);
+
+    let target: City = City { name: "Newark".to_string(), lat: 88 };
+    assert!(v.contains(&target));
 }

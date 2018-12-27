@@ -120,4 +120,11 @@ fn main() {
     // b[0] = 11;  // won't work unless b is a mutable reference - see c, below
     c[0] = 11; // a is mutable and so is the reference: c
     println!("{:?}", c);
+
+    let stack: &str = "stack";
+    let heap: String = String::from("heap");
+    println!("{}", stack);
+    println!("{}", &stack);
+    println!("{}", heap);
+    println!("{}", &heap);
 }
