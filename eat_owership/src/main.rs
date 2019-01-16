@@ -142,6 +142,7 @@ fn main() {
         String::from("two-22"),
         String::from("three-33"),
     ];
+    println!("{:?}", &times_mut);
     vectorcize_ref_mut(&mut times_mut);
     println!("{:?}", times_mut);
 }
