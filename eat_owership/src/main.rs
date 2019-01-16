@@ -111,7 +111,7 @@ fn main() {
 
     let mut a: [u8; 3] = [1, 2, 3];
     let mut array: [i32; 3] = [0; 3]; // [0, 0, 0]
-    // let b = &a;
+                                      // let b = &a;
     println!("{:?}", a);
     let mut c = a; // no move - elements are Copy
     println!("{:?}", a);
@@ -136,6 +136,14 @@ fn main() {
     vectorcize_ref(&times);
     println!("{:?}", times);
     vectorcize(times);
+
+    let mut times_mut = vec![
+        "one-11".to_owned(),
+        String::from("two-22"),
+        String::from("three-33"),
+    ];
+    vectorcize_ref_mut(&mut times_mut);
+    println!("{:?}", times_mut);
 }
 
 fn vectorcize(v: Vec<String>) {
@@ -150,7 +158,7 @@ fn vectorcize(v: Vec<String>) {
 
     let lengths: Vec<usize> = v.into_iter().map(|time| time.len()).collect();
     println!("{:?}", lengths);
-//    println!("{:?}", v);
+    //    println!("{:?}", v);
 }
 
 fn vectorcize_ref(rv: &Vec<String>) {
@@ -166,4 +174,10 @@ fn vectorcize_ref(rv: &Vec<String>) {
     let lengths: Vec<usize> = rv.into_iter().map(|time| time.len()).collect();
     println!("{:?}", lengths);
     println!("{:?}", rv);
+}
+
+fn vectorcize_ref_mut(rvm: &mut Vec<String>) {
+    rvm.iter_mut()
+        .map(|time| time.push_str(", ericky!"))
+        .collect::<Vec<()>>();
 }
