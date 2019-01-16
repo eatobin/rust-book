@@ -111,7 +111,7 @@ fn main() {
 
     let mut a: [u8; 3] = [1, 2, 3];
     let mut array: [i32; 3] = [0; 3]; // [0, 0, 0]
-                                      // let b = &a;
+    // let b = &a;
     println!("{:?}", a);
     let mut c = a; // no move - elements are Copy
     println!("{:?}", a);
@@ -133,6 +133,8 @@ fn main() {
         String::from("two-2"),
         String::from("three-3"),
     ];
+    vectorcize_ref(&times);
+    println!("{:?}", times);
     vectorcize(times);
 }
 
@@ -145,4 +147,23 @@ fn vectorcize(v: Vec<String>) {
     let lengths: Vec<usize> = v.iter().map(|time| time.len()).collect();
     println!("{:?}", lengths);
     println!("{:?}", v);
+
+    let lengths: Vec<usize> = v.into_iter().map(|time| time.len()).collect();
+    println!("{:?}", lengths);
+//    println!("{:?}", v);
+}
+
+fn vectorcize_ref(rv: &Vec<String>) {
+    for s in rv {
+        println!("{}", s);
+    }
+    println!("{:?}", rv);
+
+    let lengths: Vec<usize> = rv.iter().map(|time| time.len()).collect();
+    println!("{:?}", lengths);
+    println!("{:?}", rv);
+
+    let lengths: Vec<usize> = rv.into_iter().map(|time| time.len()).collect();
+    println!("{:?}", lengths);
+    println!("{:?}", rv);
 }
