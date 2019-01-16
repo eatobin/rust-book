@@ -127,4 +127,22 @@ fn main() {
     println!("{}", &stack);
     println!("{}", heap);
     println!("{}", &heap);
+
+    let times = vec![
+        "one-1".to_owned(),
+        String::from("two-2"),
+        String::from("three-3"),
+    ];
+    vectorcize(times);
+}
+
+fn vectorcize(v: Vec<String>) {
+    for s in &v {
+        println!("{}", s);
+    }
+    println!("{:?}", v);
+
+    let lengths: Vec<usize> = v.iter().map(|time| time.len()).collect();
+    println!("{:?}", lengths);
+    println!("{:?}", v);
 }
