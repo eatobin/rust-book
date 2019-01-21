@@ -135,7 +135,7 @@ fn main() {
     ];
     vectorcize_ref(&times);
     println!("{:?}", times);
-    vectorcize(times);
+//    vectorcize(times);
 
     let mut times_mut = vec![
         "one-11".to_owned(),
@@ -145,6 +145,69 @@ fn main() {
     println!("{:?}", &times_mut);
     vectorcize_ref_mut(&mut times_mut);
     println!("{:?}", times_mut);
+
+    let v1 = vec![1, 2, 3];
+
+    let v1_iter = v1.iter();
+
+    for val in v1_iter {
+        println!("Got: {}", val);
+    }
+
+    let v2_iter = v1.iter();
+
+    for val in v2_iter {
+        println!("Got again: {}", val);
+    }
+
+    let t1_iter = times.iter();
+
+    for val in t1_iter {
+        println!("Got: {}", val);
+    }
+
+    let t2_iter = times.iter();
+
+    for val in t2_iter {
+        println!("Got again: {}", val);
+    }
+
+    let times2 = vec![
+        "one-11111".to_owned(),
+        String::from("two-22222"),
+        String::from("three-33333"),
+    ];
+
+    let mut times2_iter = times2.iter();
+    println!("{:?}", times2_iter.next());
+    println!("{:?}", times2_iter.next());
+    println!("{:?}", times2_iter.next());
+    println!("{:?}", times2_iter.next());
+
+    let times3 = vec![
+        "one-one".to_owned(),
+        String::from("two-two"),
+        String::from("three-three"),
+    ];
+
+    let mut times3_into_iter = times3.into_iter();
+    println!("{:?}", times3_into_iter.next());
+    println!("{:?}", times3_into_iter.next());
+    println!("{:?}", times3_into_iter.next());
+    println!("{:?}", times3_into_iter.next());
+
+    let names = vec!["Jane", "Jill", "Jack", "John"];
+
+    let total_bytes = names
+        .iter()
+        .map(|name: &&str| name.len())
+        .fold(0, |acc, len| acc + len );
+
+    assert_eq!(total_bytes, 16);
+    use_names_for_something_else(names);
+}
+
+fn use_names_for_something_else(_names: Vec<&str>) {
 }
 
 fn vectorcize(v: Vec<String>) {
