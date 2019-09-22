@@ -7,6 +7,7 @@ struct Penguin {
     name: String,
     born: i16,
 }
+
 fn main() {
     let pengu = Penguin {
         name: "pengu".to_string(),
