@@ -135,7 +135,7 @@ fn main() {
     ];
     vectorcize_ref(&times);
     println!("{:?}", times);
-//    vectorcize(times);
+    //    vectorcize(times);
 
     let mut times_mut = vec![
         "one-11".to_owned(),
@@ -201,7 +201,7 @@ fn main() {
     let total_bytes = names
         .iter()
         .map(|name: &&str| name.len())
-        .fold(0, |acc, len| acc + len );
+        .fold(0, |acc, len| acc + len);
 
     assert_eq!(total_bytes, 16);
     use_names_for_something_else(names);
@@ -215,9 +215,9 @@ fn main() {
     let mut into_iter = vec2.into_iter();
 
     // A reference to what is yielded is `&&i32`. Destructure to `i32`.
-    println!("Find 2 in vec1: {:?}", iter     .find(|&&x| x == 2));
+    println!("Find 2 in vec1: {:?}", iter.find(|&&x| x == 2));
     // A reference to what is yielded is `&i32`. Destructure to `i32`.
-    println!("Find 2 in vec2: {:?}", into_iter.find(| &x| x == 2));
+    println!("Find 2 in vec2: {:?}", into_iter.find(|&x| x == 2));
 
     let vec1 = vec!["one", "two", "three"];
     let vec2 = vec!["four", "five", "six"];
@@ -226,9 +226,9 @@ fn main() {
     let mut into_iter = vec2.into_iter();
 
     // A reference to what is yielded is `&&i32`. Destructure to `i32`.
-    println!("Find 2 in vec1: {:?}", iter     .find(|&&x| x == "two"));
+    println!("Find 2 in vec1: {:?}", iter.find(|&&x| x == "two"));
     // A reference to what is yielded is `&i32`. Destructure to `i32`.
-    println!("Find 2 in vec2: {:?}", into_iter.find(| &x| x == "two"));
+    println!("Find 2 in vec2: {:?}", into_iter.find(|&x| x == "two"));
 
     let vec1 = vec![&1, &2, &3];
     let vec2 = vec![&4, &5, &6];
@@ -237,9 +237,9 @@ fn main() {
     let mut into_iter = vec2.into_iter();
 
     // A reference to what is yielded is `&&i32`. Destructure to `i32`.
-    println!("Find 2 in vec1: {:?}", iter     .find(|&&x| x == &1));
+    println!("Find 2 in vec1: {:?}", iter.find(|&&x| x == &1));
     // A reference to what is yielded is `&i32`. Destructure to `i32`.
-    println!("Find 2 in vec2: {:?}", into_iter.find(| &x| x == &2));
+    println!("Find 2 in vec2: {:?}", into_iter.find(|&x| x == &2));
 
     let vec1 = vec!["one".to_owned(), "two".to_owned(), "three".to_owned()];
     let vec2 = vec!["four".to_owned(), "five".to_owned(), "six".to_owned()];
@@ -248,13 +248,18 @@ fn main() {
     let mut into_iter = vec2.into_iter();
 
     // A reference to what is yielded is `&&i32`. Destructure to `i32`.
-    println!("Find 2 in vec1: {:?}", iter     .find(| x| x == &&"three".to_owned()));
+    println!(
+        "Find 2 in vec1: {:?}",
+        iter.find(|x| x == &&"three".to_owned())
+    );
     // A reference to what is yielded is `&i32`. Destructure to `i32`.
-    println!("Find 2 in vec2: {:?}", into_iter.find(| x| x == &"six".to_owned()));
+    println!(
+        "Find 2 in vec2: {:?}",
+        into_iter.find(|x| x == &"six".to_owned())
+    );
 }
 
-fn use_names_for_something_else(_names: Vec<&str>) {
-}
+fn use_names_for_something_else(_names: Vec<&str>) {}
 
 fn vectorcize(v: Vec<String>) {
     for s in &v {

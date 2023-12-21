@@ -48,20 +48,32 @@ fn main() {
     let mut peter: Person = Person { name, age };
 
     // My attempt
-    let tucson: City = City { name: String::from("Tucson"), lat: 77 };
+    let tucson: City = City {
+        name: String::from("Tucson"),
+        lat: 77,
+    };
 
     // Print debug struct
     println!("{:?}", peter);
     println!("{:?}", tucson);
 
-    let new_city: City = City { name: String::from("Chicago"), ..tucson };
+    let new_city: City = City {
+        name: String::from("Chicago"),
+        ..tucson
+    };
     println!("{:?}", new_city);
 
-    let mut newark: City = City { name: "Newark".to_string(), lat: age };
+    let mut newark: City = City {
+        name: "Newark".to_string(),
+        lat: age,
+    };
     println!("{:?}", newark);
     newark = City { lat: 88, ..newark };
     println!("{:?}", newark);
-    let boston: City = City { name: "Boston".to_string(), lat: age };
+    let boston: City = City {
+        name: "Boston".to_string(),
+        lat: age,
+    };
 
     // EAT added
     peter.greet();
@@ -118,7 +130,10 @@ fn main() {
     ptr_v.push(&boston);
     println!("{:?}", ptr_v);
 
-    let target: City = City { name: "Newark".to_string(), lat: 88 };
+    let target: City = City {
+        name: "Newark".to_string(),
+        lat: 88,
+    };
     assert!(ptr_v.contains(&&target));
 
     let mut v: Vec<&City> = Vec::new();
