@@ -34,8 +34,8 @@ fn var_and_borrowing(mut ms: &mut String) -> () {
 }
 
 // look... no need to mark the parameter mutable if the param type is mutable
-fn var_and_borrowing_2(ms: &mut String) -> () {
-    ms.push_str("_I'm_mutable_and borrowed...");
+fn var_and_borrowing_no_mut(ms: &mut String) -> () {
+    ms.push_str("_I'm_mutable_and borrowed - no mut param...");
     println!("{}", ms);
     println!("{}", ms.len());
 }
@@ -61,6 +61,9 @@ fn main() {
 
     let mut worms = String::from("my worms");
     var_and_borrowing(&mut worms);
+    println!("{}", worms);
+    
+    var_and_borrowing_no_mut(&mut worms);
     println!("{}", worms);
 
     // these are all still valid:
