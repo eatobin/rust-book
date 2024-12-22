@@ -1,76 +1,110 @@
 #![allow(unused)]
 
-fn val_and_ownership_not_returned(s: String) -> () {
-    println!("In the val_and_ownership_not_returned function: {}", s);
-    println!("{}\n", s.len());
-}
-
-fn val_and_ownership_returned(s: String) -> String {
-    println!("In the val_and_ownership_returned function: {}", s);
-    println!("{}\n", s.len());
-    s
-}
-
 fn val_and_borrowing(s: &String) -> () {
     println!("In the val_and_borrowing function: {}", s);
     println!("{}\n", s.len());
 }
 
-fn var_and_ownership_not_returned(mut ms: String) -> () {
-    ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_not_returned function");
-    println!("{}\n", ms);
+fn var_and_borrowing_(ms: &mut String) -> () {
+    println!("In the var_and_borrowing function: {}", ms);
+    println!("{}\n", ms.len());
+    ms.push_str(" ...tacked on");
 }
 
-fn var_and_ownership_returned(mut ms: String) -> String {
-    ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_returned function");
-    println!("{}", ms);
-    println!("{}\n", ms.len());
-    ms
-}
+// fn val_and_ownership_not_returned(s: String) -> () {
+//     println!("In the val_and_ownership_not_returned function: {}", s);
+//     println!("{}\n", s.len());
+// }
 
-fn var_and_borrowing(mut ms: &mut String) -> () {
-    ms.push_str("In the var_and_borrowing function");
-    println!("{}", ms);
-    println!("{}\n", ms.len());
-}
+// fn val_and_ownership_returned(s: String) -> String {
+//     println!("In the val_and_ownership_returned function: {}", s);
+//     println!("{}\n", s.len());
+//     s
+// }
 
-// look... no need to mark the parameter mutable if the param type is mutable
-fn var_and_borrowing_no_mut_param(ms: &mut String) -> () {
-    ms.push_str("In the var_and_borrowing_no_mut_param function");
-    println!("{}", ms);
-    println!("{}\n", ms.len());
-}
+// fn val_and_ownership_returned(mut v: Vec<u8>) -> Vec<u8> {
+//     v.push(99);
+//     v
+// }
+
+// fn var_and_ownership_not_returned(mut ms: String) -> () {
+//     ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_not_returned function");
+//     println!("{}\n", ms);
+// }
+
+// fn var_and_ownership_returned(mut ms: String) -> String {
+//     ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_returned function");
+//     println!("{}", ms);
+//     println!("{}\n", ms.len());
+//     ms
+// }
+
+// fn var_and_borrowing(mut ms: &mut String) -> () {
+//     ms.push_str("In the var_and_borrowing function");
+//     println!("{}", ms);
+//     println!("{}\n", ms.len());
+// }
+
+// // look... no need to mark the parameter mutable if the param type is mutable
+// fn var_and_borrowing_no_mut_param(ms: &mut String) -> () {
+//     ms.push_str("In the var_and_borrowing_no_mut_param function");
+//     println!("{}", ms);
+//     println!("{}\n", ms.len());
+// }
 
 fn main() {
     println!();
-    let hello = String::from("hello there!");
-    val_and_ownership_not_returned(hello);
+    let immut_string: String = String::from("Immut string!");
+    let mut mut_string: String = String::from("Mut string!");
+
+    println!(
+        "Print the immutable string - first time: {:?}",
+        immut_string
+    );
+    println!(
+        "Print the immutable string - second time: {:?}\n",
+        immut_string
+    );
+
+    val_and_borrowing(&immut_string);
+
+    println!("Print the borrowed immutable string: {:?}\n", immut_string);
+
+    var_and_borrowing_(&mut mut_string);
+
+    println!("Print the borrowed mutable string: {:?}", mut_string);
+    println!(
+        "Print the borrowed mutable string again: {:?}\n",
+        mut_string
+    );
+
+    // val_and_ownership_not_returned(hello);
     // val_and_ownership_returned(hello); Won't work cuz hello has been moved
 
-    let dogs = String::from("my dogs");
-    let dogs2 = val_and_ownership_returned(dogs);
-    println!(
-        "Just the string parameter - which was returned: {}\n",
-        dogs2
-    );
+    // let dogs = String::from("my dogs");
+    // let dogs2 = val_and_ownership_returned(dogs);
+    // let mut dogs: Vec<u8> = vec![1, 2];
+    // let dogs2 = val_and_ownership_returned(dogs);
+    // println!("Just the vec parameter - which was returned: {:?}\n", dogs2);
+    // println!("Now the original vec: {:?}\n", dogs2);
 
-    let horses = String::from("my horses");
-    val_and_borrowing(&horses);
-    println!(
-        "Just the string - which was borrowed and never left: {}\n",
-        horses
-    );
+    // let horses = String::from("my horses");
+    // val_and_borrowing(&horses);
+    // println!(
+    //     "Just the string - which was borrowed and never left: {}\n",
+    //     horses
+    // );
 
-    let fish = String::from("my fish");
-    var_and_ownership_not_returned(fish);
-    // var_and_ownership_returned(fish); This won't work cuz fish is moved
+    // let fish = String::from("my fish");
+    // var_and_ownership_not_returned(fish);
+    // // var_and_ownership_returned(fish); This won't work cuz fish is moved
 
-    let goats = String::from("my goats");
-    let goats2 = var_and_ownership_returned(goats);
-    println!(
-        "The mutated string parameter - which was returned: {}\n",
-        goats2
-    );
+    // let goats = String::from("my goats");
+    // let goats2 = var_and_ownership_returned(goats);
+    // println!(
+    //     "The mutated string parameter - which was returned: {}\n",
+    //     goats2
+    // );
     //
     // let mut worms = String::from("my worms");
     // var_and_borrowing(&mut worms);
