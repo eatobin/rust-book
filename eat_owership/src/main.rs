@@ -1,8 +1,8 @@
 #![allow(unused)]
 
-fn val_and_borrowing(s: &String) -> () {
-    println!("In the val_and_borrowing function: {}", s);
-    println!("{}\n", s.len());
+fn val_and_borrowing(s_ptr: &String) -> () {
+    println!("In the val_and_borrowing function: {}", s_ptr);
+    println!("{}\n", s_ptr.len());
 }
 
 fn var_and_borrowing_(ms: &mut String) -> () {
@@ -11,33 +11,28 @@ fn var_and_borrowing_(ms: &mut String) -> () {
     ms.push_str(" ...tacked on");
 }
 
-// fn val_and_ownership_not_returned(s: String) -> () {
-//     println!("In the val_and_ownership_not_returned function: {}", s);
-//     println!("{}\n", s.len());
-// }
+fn val_and_ownership_not_returned(s: String) -> () {
+    println!("In the val_and_ownership_not_returned function: {}", s);
+    println!("{}\n", s.len());
+}
 
-// fn val_and_ownership_returned(s: String) -> String {
-//     println!("In the val_and_ownership_returned function: {}", s);
-//     println!("{}\n", s.len());
-//     s
-// }
+fn val_and_ownership_returned(s: String) -> String {
+    println!("In the val_and_ownership_returned function: {}", s);
+    println!("{}\n", s.len());
+    s
+}
 
-// fn val_and_ownership_returned(mut v: Vec<u8>) -> Vec<u8> {
-//     v.push(99);
-//     v
-// }
+fn var_and_ownership_not_returned(mut ms: String) -> () {
+    ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_not_returned function");
+    println!("{}\n", ms);
+}
 
-// fn var_and_ownership_not_returned(mut ms: String) -> () {
-//     ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_not_returned function");
-//     println!("{}\n", ms);
-// }
-
-// fn var_and_ownership_returned(mut ms: String) -> String {
-//     ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_returned function");
-//     println!("{}", ms);
-//     println!("{}\n", ms.len());
-//     ms
-// }
+fn var_and_ownership_returned(mut ms: String) -> String {
+    ms.push_str(" -> Pushed onto the parameter (it's mutable) -> In the var_and_ownership_returned function");
+    println!("{}", ms);
+    println!("{}\n", ms.len());
+    ms
+}
 
 // fn var_and_borrowing(mut ms: &mut String) -> () {
 //     ms.push_str("In the var_and_borrowing function");
