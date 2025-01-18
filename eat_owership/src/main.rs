@@ -1,5 +1,7 @@
 #![allow(unused)]
 
+// ...ahh - it works!
+
 fn val_and_borrowing(s_ptr: &String) -> () {
     println!("In the val_and_borrowing function: {}", s_ptr);
     println!("{}\n", s_ptr.len());
